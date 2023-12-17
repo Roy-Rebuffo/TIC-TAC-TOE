@@ -1,6 +1,7 @@
 //rafc (comando para que te arme la primera parte de la funcion)
 
 import { useState } from "react";
+import confetti from "canvas-confetti";
 
 //{key} es un identificador unico de ese elemento que renderizamos en una lista es importante que sea unico. en este caso index es unico porque los valores no van a cambiar nunca (del 0 al 8). sino habria que poner un valor unico como por ejemplo {userName}
 
@@ -75,6 +76,7 @@ function App() {
     //revisa si hay ganador
     const newWinner = checkWinner(newBoard)
     if(newWinner){
+        confetti()
         setWinner(newWinner)
     }else if(checkEndGame(newBoard)){
         setWinner(false)//en caso de empate
@@ -84,10 +86,10 @@ function App() {
     <main className="board">
       <h1>TIC TAC TOE</h1>
       <section className="game">
-        {board.map((_, index) => {
+        {board.map((square, index) => {
           return (
             <Square key={index} index={index} updateBoard={updateBoard}>
-              {board[index]}
+              {square}
             </Square>
           );
         })}
